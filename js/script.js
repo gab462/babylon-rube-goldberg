@@ -67,7 +67,19 @@ function tryagain () {
 tryagain();
 
 mat = new BABYLON.StandardMaterial("mat");
-mat.diffuseTexture = new BABYLON.Texture("/res/texture.jpg")
+mat.diffuseTexture = new BABYLON.Texture("/res/texture.jpg");
+
+rampamat = new BABYLON.StandardMaterial("rampamat");
+rampamat.diffuseTexture = new BABYLON.Texture("/res/metal.jpg");
+
+funilmat = new BABYLON.StandardMaterial("funilmat");
+funilmat.diffuseTexture = new BABYLON.Texture("/res/vortex.jpg");
+
+groundmaterial = new BABYLON.StandardMaterial("groundmaterial");
+groundmaterial.diffuseTexture = new BABYLON.Texture("/res/grass.jpg");
+
+dominomat = new BABYLON.StandardMaterial("dominomat");
+dominomat.diffuseTexture = new BABYLON.Texture("/res/domino.png");
 
 box = BABYLON.MeshBuilder.CreateBox("caixa", {height: 10, width: 10, depth: 10}, scene);
 box.rotation.z = Math.PI / 3;
@@ -93,7 +105,7 @@ rampa.position.y = -10;
 rampa.position.x = 5;
 rampa.rotation.x = Math.PI/5;
 rampa.physicsImpostor = new BABYLON.PhysicsImpostor(rampa, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, friction: 1 }, scene);
-rampa.material = mat;
+rampa.material = rampamat;
 
 portinhola = BABYLON.MeshBuilder.CreateBox("portinolha", {height: 1, width: 8, depth: 5}, scene);
 portinhola.position.y = -12;
@@ -125,7 +137,7 @@ funilCSG = funil1CSG.subtract(funil2CSG).subtract(buracoCSG);
 funil = funilCSG.toMesh("funil", null, scene);
 funil.position.x = 5;
 funil.position.z = 15;
-funil.material = mat;
+funil.material = funilmat;
 
 scene.removeMesh(funil1);
 scene.removeMesh(funil2);
@@ -144,6 +156,7 @@ ground = BABYLON.MeshBuilder.CreateBox("ground", {height: 1, width: 45, depth: 4
 ground.position.y = -30;
 ground.position.z = 15;
 ground.position.x = 20;
+ground.material = groundmaterial;
 
 ground.physicsImpostor = new BABYLON.PhysicsImpostor(ground, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, friction: 1 }, scene);
 
@@ -152,7 +165,7 @@ rampadomi.position.y = -25;
 rampadomi.position.z = 16;
 rampadomi.position.x = 6;
 rampadomi.rotation.z = - Math.PI / 5;
-rampadomi.material = mat;
+rampadomi.material = rampamat;
 
 rampadomi.physicsImpostor = new BABYLON.PhysicsImpostor(rampadomi, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, friction: 1 }, scene);
 
@@ -164,6 +177,7 @@ for(let i=0; i<4; i++){
     dominos[i].position.x = i * 6 + 11;
     dominos[i].position.z = 16;
     dominos[i].physicsImpostor = new BABYLON.PhysicsImpostor(dominos[i], BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0.05, friction: 1 }, scene);
+    dominos[i].material = dominomat;
 }
 
 martin = new BABYLON.StandardMaterial("martin");
